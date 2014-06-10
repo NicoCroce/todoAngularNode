@@ -12,6 +12,11 @@ var myTasks = [{
         id: 2,
         texto: 'Fede',
         hecho: false
+    },
+    {
+        id:3,
+        texto: 'hola que tal...',
+        hecho: true
     }
 ];
 

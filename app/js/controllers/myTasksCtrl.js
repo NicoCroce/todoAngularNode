@@ -1,15 +1,15 @@
 'use strict';
 
-app.controller('myPostsCtrl', function($scope, blogService, toaster) {
+app.controller('myTasksCtrl', function($scope, blogService) {
 
     //get all elements
     $scope.getAll = function() {
        blogService.getAll()
             .success(function (data, status, headers, config) {
-                $scope.data = data;
+                $scope.tareas = data;
             })
             .error(function(data, status, headers, config) {
-                toaster.pop('error', current);
+                //toaster.pop('error', current);
             });
     }
 

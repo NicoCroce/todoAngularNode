@@ -14,16 +14,12 @@
     <!-- navigation bar --> 
     <nav class="navbar navbar-default navbar-inverse" role="navigation"> <!--definir un controller, agregar navigationController.js     $location.path("/post/1")-->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">demoBlog</a>
+            <a class="navbar-brand" href="#">TODO (demo)</a>
         </div>
     </nav><!-- navigation bar --> 
      
     <!-- container -->
     <div class="row">
-        <!-- left side -->
-        <div class="col-xs-6 col-md-4 left-side">
-            <toaster-container toaster-options="{'position-class': 'toast-bottom-left', 'time-out': 3000}"></toaster-container>
-        </div>    
         <!-- right side -->
         <div class="col-xs-12 col-md-8 right-side">
             <!-- ng-view, HTML is injected dinamically -->
@@ -45,8 +41,6 @@
     <script type="text/javascript" src="lib/toaster.js"></script>    
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
-    <script src="js/controllers/myPostsCtrl.js"></script>
-    
-    
+    <script src="js/controllers/myTasksCtrl.js"></script>
 </body>
 </html>
