@@ -8,8 +8,8 @@ app.config(['$routeProvider', function($routeProvider) {
     $routeProvider    
         .when('/', 
             {
-            controller: 'myPostsCtrl',
-            templateUrl: 'partials/myPosts.html' 
+            controller: 'myTasksCtrl',
+            templateUrl: 'partials/myTasks.html'
             })
         .otherwise({redirectTo: '/'});
 }]);

@@ -3,11 +3,11 @@
 /* Services */
 app.service('blogService', function ($http, $location) {
         
-        var urlBase = "/api/myPosts";
+        var urlBase = "/api/myTasks";
     
         //return the array
         this.getAll = function () {
-           return $http.get('/api/myPosts');
+           return $http.get('/api/myTasks');
         }
        
         //search by id in the current array

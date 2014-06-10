@@ -1,9 +1,22 @@
 var express = require("express"),
     app     = express()
-var _ = require("underscore");
-var mongoose = require('mongoose');
 
-// configuration _______________________________________________________________________________________ 
+var _ = require("underscore");
+
+var myTasks = [{
+    id: 1,
+    texto: 'Nico',
+    hecho: true
+},
+    {
+        id: 2,
+        texto: 'Fede',
+        hecho: false
+    }
+];
+
+var cont = myTasks.length;
+
 app.configure(function(){
     app.set('port', process.env.PORT || 3000);
     app.use(express.errorHandler());
@@ -18,96 +31,50 @@ app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
 
+
 app.get("/", function(req, res) {
     res.redirect("/index.html");
 });
 
-// _____________________________________________________________________________________________________ 
-
-// mongo db ____________________________________________________________________________________________ 
-
-var db = mongoose.connection;
-
-db.on('error', console.error);
-
-db.once('open', function() {            
-    // Schema
-    var postSchema = new mongoose.Schema({
-        id: Number,
-        title: { type: String },
-        text:  { type: String }
-    });
-    // Mongoose also creates a MongoDB collection called 'Posts' for these documents.
-    var singlePost = mongoose.model('singlePost', postSchema);
-    
-    // examples ____________________________________________________________________________________________ 
-    
-    var post_example1 = new singlePost({
-        id: 1,
-        title: 'Recruiting Advice No One Tells You',
-        text:  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu facilisis                lectus, sed feugiat tellus nulla eu dolor. Nulla porta bibendum lectus quis euismod. Aliquam volutpat ultricies porttitor. Cras risus nisi, accumsan vel cursus ut,                    sollicitudin vitae dolor. Fusce scelerisque eleifend lectus in bibendum. Suspendisse lacinia egestas felis a volutpat.'
-    });
-
-    var post_example2 = new singlePost({
-        id: 2,
-        title: 'How to start writing and get closer to your goals',
-        text:  'You have been thinking about starting a blog or writing a novel for a long time. You want to write but you just never do it. The best time was 5 years ago; the second                 best time is now. So, what keeps you away from your goals?'
-    });
-    
-    var contID = 2;
-    
-    post_example1.save();
-    post_example2.save();
-    
-    // _____________________________________________________________________________________________________ 
-    
-    // get all posts
-    app.get('/api/myPosts', function(req, res){
-        singlePost.find(function(err, myPosts) {
-            if (err) return console.error(err);
-            res.send (myPosts);
-        });
-    });
-        
-    //get a particular post by ID
-    app.get('/api/myPosts/:id', function(req, res){
-        singlePost.findOne({ id: req.params.id }, function(err, selPost) {
-            if (err) return console.error(err);
-            res.send (selPost);
-            });
-    });
-    
-    // create a new post
-    app.put('/newPost', function(req, res) { 
-        var newPost = new singlePost({
-            id: ++contID,
-            title : req.body.title,
-            text : req.body.text
-        });
-        newPost.save();
-        res.json(true);
-    });
-    
-    // update a created post
-    app.post('/editPost', function(req, res) {
-        singlePost.findOne({ id: req.body.id }, function (err, selPost){
-            selPost.title = req.body.title;
-            selPost.text = req.body.text;
-            selPost.save();
-        });
-        res.json(true);
-    }); 
-
-    // delete a particular post
-    app.delete('/delete/:id', function(req, res) {
-        singlePost.remove({ id: req.params.id }, function (err) {
-            if (err) return handleError(err);
-            // removed!
-            res.json(true);   
-        });    
-    });
+// get all Tasks
+app.get('/api/myTasks', function(req, res){
+    res.send (myTasks) ;
 });
 
-// _____________________________________________________________________________________________________ 
 
-mongoose.connect('mongodb://localhost/test');
+//get a particular Task by ID.   return itemTask.id  est'a bien?
+app.get('/api/myPosts/:id', function(req, res){
+    selTask = _.find(myTasks, function(itemTask){return itemTask.id == req.params.id});
+    res.send (selTask);
+});
+
+// create a new Task.   Preguntar id, texto hecho.   que hace res.json?
+app.put('/newPost', function(req, res) {
+    var newTask = {
+        id : ++cont,
+        texto : req.body.texto,
+        hecho : req.body.hecho
+    };
+    newTask.push(newTask);
+    res.json(true);
+});
+
+// update a created Task    est'a bien req.params.id?
+// var postIndex = myPosts.indexOf(selPost);  que hace?
+// myTasks[postIndex] = req.body;   no entiendo
+// res.json(true);   returna que fue correcto?
+// _ que sentido tiene?
+app.post('/editPost', function(req, res) {
+    selTask= _.find(myTasks, function(itemTask){return itemTask.id == req.params.id});
+    var postIndex = myTasks.indexOf(selPost);
+    myTasks[postIndex] = req.body;
+    res.json(true);
+});
+
+// delete a particular post
+app.delete('/delete/:id', function(req, res) {
+    selPost = _.find(myPosts, function(itemPost){return itemPost.id == req.params.id});
+    var postIndex = myPosts.indexOf(selPost);
+    myPosts.splice(postIndex, 1);
+    res.json(true);
+});
