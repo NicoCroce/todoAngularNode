@@ -1,7 +1,7 @@
 'use strict';
 
 /* Services */
-app.service('blogService', function ($http, $location) {
+app.service('todoService', function ($http, $location) {
         
         var urlBase = "/api/myTasks";
     
@@ -9,16 +9,18 @@ app.service('blogService', function ($http, $location) {
         this.getAll = function () {
            return $http.get('/api/myTasks');
         }
-       
-        //search by id in the current array
+
+    //add a new element to array
+    this.create = function (newTask) {
+        return $http.put('/newTask', newTask);
+    };
+
+    //search by id in the current array
         this.getById = function (blogItemId) {  
             return $http.get('/api/myPosts/'+blogItemId);
         };
     
-        //add a new element to array
-        this.create = function (postData) {
-            return $http.put('/newPost', postData);
-        };   
+
     
         //update blogItem matching by id
         this.update = function (blogItemId, blogItem) {

@@ -46,22 +46,23 @@ app.get('/api/myTasks', function(req, res){
     res.send (myTasks) ;
 });
 
-
-//get a particular Task by ID.   return itemTask.id  est'a bien?
-app.get('/api/myPosts/:id', function(req, res){
-    selTask = _.find(myTasks, function(itemTask){return itemTask.id == req.params.id});
-    res.send (selTask);
-});
-
 // create a new Task.   Preguntar id, texto hecho.   que hace res.json?
-app.put('/newPost', function(req, res) {
+//NO SE PUEDE PASAR LA TAREA ENTERA Y AGREGARLA EN LUGAR DE DESARMAR EL OBJETO?
+
+app.put('/newTask', function(req, res) {
     var newTask = {
         id : ++cont,
         texto : req.body.texto,
         hecho : req.body.hecho
     };
-    newTask.push(newTask);
+    myTasks.push(newTask);
     res.json(true);
+});
+
+//get a particular Task by ID.   return itemTask.id  est'a bien?
+app.get('/api/myPosts/:id', function(req, res){
+    selTask = _.find(myTasks, function(itemTask){return itemTask.id == req.params.id});
+    res.send (selTask);
 });
 
 // update a created Task    est'a bien req.params.id?

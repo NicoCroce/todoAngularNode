@@ -1,15 +1,15 @@
 'use strict';
 
-app.controller('myTasksCtrl', function($scope, blogService) {
+app.controller('myTasksCtrl', function($scope, todoService, $location) {
 
     //get all elements
     $scope.getAll = function() {
-       blogService.getAll()
+        todoService.getAll()
             .success(function (data, status, headers, config) {
                 $scope.tareas = data;
             })
             .error(function(data, status, headers, config) {
-                //toaster.pop('error', current);
+                alert(current);
             });
     }
 
@@ -21,39 +21,27 @@ app.controller('myTasksCtrl', function($scope, blogService) {
         return cuenta;
     };
 
-    $scope.addTask = function () {
-        if ($scope.textoNuevaTarea !== '') {
-            $scope.tareas.push({
-                texto: $scope.textoNuevaTarea,
-                hecho: false
-            });
-
-            $scope.textoNuevaTarea = '';
-        }
-    };
-
-
-
     // Call to blogService.create()
-    $scope.addPost = function() {
-        var postData = {
+    $scope.addTask = function() {
+        var task = {
             id : '',
-            title : $scope.titlePost,
-            text : $scope.bodyPost
+            texto : $scope.textoNuevaTarea,
+            hecho : false
         };
-        blogService.create(postData)
+        todoService.create(task)
             .success(function (current, status, headers, config) {
-                $location.path("/posts");
-                toaster.pop('success', "Post saved successfully!");
+                alert("Tarea agregada correctamente!");
+                $scope.getAll();
+                $scope.textoNuevaTarea = "";
             })
             .error(function(current, status, headers, config) {
-                toaster.pop('error', current);
+                alert(current);
             });
     };
 
     //get single post
     $scope.getById = function() {
-        blogService.getById($routeParams.postId)
+        todoService.getById($routeParams.postId)
             .success(function (current, status, headers, config) {
                 $scope.current = current;
             })
@@ -64,7 +52,7 @@ app.controller('myTasksCtrl', function($scope, blogService) {
 
     // update post information. Call to blogService.update()
     $scope.updatePost = function() {
-        blogService.update($scope.current.id, $scope.current)
+        todoService.update($scope.current.id, $scope.current)
             .success(function (current, status, headers, config) {
                 $location.path("/posts/"+$scope.current.id);
                 toaster.pop('success', "Post updated successfully!");
