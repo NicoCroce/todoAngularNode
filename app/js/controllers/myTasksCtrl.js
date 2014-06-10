@@ -13,6 +13,27 @@ app.controller('myTasksCtrl', function($scope, blogService) {
             });
     }
 
+    $scope.restantes = function () {
+        var cuenta = 0;
+        angular.forEach($scope.tareas, function (tarea) {
+            cuenta += tarea.hecho ? 0 : 1;
+        });
+        return cuenta;
+    };
+
+    $scope.addTask = function () {
+        if ($scope.textoNuevaTarea !== '') {
+            $scope.tareas.push({
+                texto: $scope.textoNuevaTarea,
+                hecho: false
+            });
+
+            $scope.textoNuevaTarea = '';
+        }
+    };
+
+
+
     // Call to blogService.create()
     $scope.addPost = function() {
         var postData = {
