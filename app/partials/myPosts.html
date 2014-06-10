@@ -1,0 +1,12 @@
+<!-- My posts  -->
+
+<h2>My posts</h2>
+<p class="user-post">by Andrés Calamaro</p>
+<div ng-repeat="todo in data">   
+    <hr>
+    <a class="post-title" href="#/posts/{{todo.id}}">
+        <h3><span class="badge">{{todo.id}}</span>  {{todo.title}}</h3>
+        <p class="preview">{{todo.text}} </p>
+    </a>
+    <hr>
+</div>    
