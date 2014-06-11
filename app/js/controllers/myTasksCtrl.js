@@ -39,6 +39,29 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
             });
     };
 
+    $scope.seleccion = function(task){
+        todoService.seleccion(task)
+        .success(function () {
+                $scope.getAll();
+            })
+                .error(function(current, status, headers, config) {
+                    alert(current);
+                });
+    }
+
+    $scope.delSelectedTasks = function(){
+        todoService.delSelectedTasks()
+            .success(function(){
+                alert('Eliminados');
+                $scope.getAll();
+            })
+            .error(function(current){
+                alert(current)
+            });
+    }
+
+
+
     //get single post
     $scope.getById = function() {
         todoService.getById($routeParams.postId)

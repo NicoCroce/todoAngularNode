@@ -59,28 +59,34 @@ app.put('/newTask', function(req, res) {
     res.json(true);
 });
 
-//get a particular Task by ID.   return itemTask.id  est'a bien?
-app.get('/api/myPosts/:id', function(req, res){
-    selTask = _.find(myTasks, function(itemTask){return itemTask.id == req.params.id});
-    res.send (selTask);
+// delete a particular task
+app.delete('/delete', function(req, res) {
+    _.each(myTasks, function(tarea){
+        if(tarea.hecho) {
+            var taskIndex = myTasks.indexOf(tarea);
+            myTasks.splice(taskIndex, 1);
+            res.json(true);
+        }
+    })
 });
+
+// Select a particular task
+app.post('/selectedTask', function(req, res) {
+    selTask = _.find(myTasks, function(itemTask){return itemTask.id == req.body.id});
+    var taskIndex = myTasks.indexOf(selTask);
+    myTasks[taskIndex] = req.body;
+    res.json(true);
+});
+
 
 // update a created Task    est'a bien req.params.id?
 // var postIndex = myPosts.indexOf(selPost);  que hace?
 // myTasks[postIndex] = req.body;   no entiendo
-// res.json(true);   returna que fue correcto?
+// res.json(true);   return que fue correcto?
 // _ que sentido tiene?
 app.post('/editPost', function(req, res) {
     selTask= _.find(myTasks, function(itemTask){return itemTask.id == req.params.id});
     var postIndex = myTasks.indexOf(selPost);
     myTasks[postIndex] = req.body;
-    res.json(true);
-});
-
-// delete a particular post
-app.delete('/delete/:id', function(req, res) {
-    selPost = _.find(myPosts, function(itemPost){return itemPost.id == req.params.id});
-    var postIndex = myPosts.indexOf(selPost);
-    myPosts.splice(postIndex, 1);
     res.json(true);
 });

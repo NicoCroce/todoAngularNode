@@ -15,6 +15,16 @@ app.service('todoService', function ($http, $location) {
         return $http.put('/newTask', newTask);
     };
 
+    this.seleccion = function(selectedTask){
+        return $http.post('/selectedTask', selectedTask);
+    }
+
+    //remove blogItem matching by id
+    this.delSelectedTasks = function () {
+        return $http.delete('/delete');
+    };
+
+
     //search by id in the current array
         this.getById = function (blogItemId) {  
             return $http.get('/api/myPosts/'+blogItemId);
@@ -27,9 +37,5 @@ app.service('todoService', function ($http, $location) {
             return $http.post('/editPost', blogItem);
         };
     
-        //remove blogItem matching by id
-        this.remove = function (blogItemId) {
-            return $http.delete('/delete/'+blogItemId);
-            
-        };
+
 }); 
