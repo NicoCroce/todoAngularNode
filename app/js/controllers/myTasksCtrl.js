@@ -36,9 +36,12 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
             texto : $scope.textoNuevaTarea,
             hecho : false
         };
+        if($scope.textoNuevaTarea == ""){
+            
+        }
+
         todoService.create(task)
             .success(function (current, status, headers, config) {
-                alert("Tarea agregada correctamente!");
                 $scope.getAll();
                 $scope.textoNuevaTarea = "";
             })

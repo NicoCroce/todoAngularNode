@@ -59,14 +59,10 @@ app.put('/newTask', function(req, res) {
     res.json(true);
 });
 
-// delete a particular task
+// delete todas las tareas terminadas.
 app.delete('/delete', function(req, res) {
-    _.each(myTasks, function(tarea){
-        if(tarea.hecho) {
-            var taskIndex = myTasks.indexOf(tarea);
-            myTasks.splice(taskIndex, 1);
-        }
-    })
+    var selTasks = _.where(myTasks, {hecho: false});
+    myTasks = selTasks;
     res.json(true);
 });
 
