@@ -7,6 +7,7 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
         todoService.getAll()
             .success(function (data, status, headers, config) {
                 $scope.tareas = data;
+                numEliminar();
             })
             .error(function(data, status, headers, config) {
                 alert(current);
@@ -19,6 +20,13 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
             cuenta += tarea.hecho ? 0 : 1;
         });
         return cuenta;
+    };
+
+    var numEliminar = function () {
+        $scope.cuentaEliminar = 0;
+        angular.forEach($scope.tareas, function (tarea) {
+            $scope.cuentaEliminar += tarea.hecho ? 1 : 0;
+        });
     };
 
     // Call to blogService.create()
@@ -49,7 +57,7 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
                 });
     }
 
-    $scope.delSelectedTasks = function(){
+    $scope.delSelectedTasksC = function(){
         todoService.delSelectedTasks()
             .success(function(){
                 alert('Eliminados');

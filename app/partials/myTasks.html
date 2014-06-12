@@ -1,8 +1,11 @@
 <!-- My posts  -->
 
-<h1>Lista de Tareas</h1>
-<span>{{restantes()}} de {{tareas.length}}</span>
-<button ng-click="delSelectedTasks()">Eliminar</button>
+<h1 class="tituloList">Lista de Tareas</h1>
+<div class="separador">
+    <span class="numRestante">{{restantes()}} tarea/s restantes de {{tareas.length}}</span>
+        <button ng-click="delSelectedTasksC()" class="btn btn-default btn-danger btDelete">DELETE
+    <span class="btEliminar">{{cuentaEliminar}}</span></button>
+</div>
 <ul class="unstyled">
     <li ng-repeat="tarea in tareas" class="listStyle">
         <div class="row">
@@ -21,10 +24,10 @@
 </ul>
 <form ng-submit="addTask()">
     <div class="col-lg-6">
-        <div class="input-group">
+        <div class="input-group input-group-lg">
             <input type="text" class="form-control" placeholder="Agregar item" ng-model="textoNuevaTarea">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Add</button>
+                        <button class="btn btn-default btn-primary" type="submit">Add</button>
                     </span>
         </div>
         <!-- /input-group -->

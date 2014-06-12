@@ -9,7 +9,7 @@
 }
 
 .hecho-true{
-    background: rgb(219, 255, 218);
+    background: rgb(235, 235, 235);
     text-decoration: line-through;
 }
 
@@ -20,4 +20,45 @@
 .principalCenter {
     width: 80%;
     margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 11px;
+    padding: 18px;
+    box-shadow: inset 0px 0px 0px 1px rgb(219, 219, 219);
+    background: rgb(247, 247, 247);
+}
+
+.numRestante {
+    padding: 3px 8px 3px 8px;
+    margin-left: 17px;
+    border-radius: 4px;
+    background: white;
+    color: rgb(146, 146, 146);
+}
+
+.btEliminar {
+    background: rgb(255, 255, 255);
+    padding: 3px 9px 3px 8px;
+    border-radius: 8px;
+    color: rgb(202, 56, 56);
+    font-weight: 800;
+    margin-left: 5px;
+}
+
+.tituloList {
+    text-shadow: 2px 2px 3px rgb(165, 165, 165);
+    text-decoration: blink;
+    margin: 0;
+    border-bottom: 1px solid rgb(136, 136, 136);
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+}
+
+.btDelete {
+    float: right;
+    margin-right: 17px;
+    margin-top: -6px;
+}
+
+.separador {
+    padding-top: 10px;
 }
