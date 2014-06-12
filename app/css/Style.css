@@ -52,6 +52,9 @@
     padding-bottom: 4px;
     margin-bottom: 4px;
 }
+.tituloList.nombre {
+    text-align: center;
+}
 
 .btDelete {
     float: right;
@@ -65,4 +68,8 @@
 
 .naviBar {
     background: dimgray;
+}
+
+.imgBox {
+    width: 100%;
 }

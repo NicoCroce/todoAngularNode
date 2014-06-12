@@ -65,9 +65,9 @@ app.delete('/delete', function(req, res) {
         if(tarea.hecho) {
             var taskIndex = myTasks.indexOf(tarea);
             myTasks.splice(taskIndex, 1);
-            res.json(true);
         }
     })
+    res.json(true);
 });
 
 // Select a particular task

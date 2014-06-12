@@ -60,38 +60,12 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
     $scope.delSelectedTasksC = function(){
         todoService.delSelectedTasks()
             .success(function(){
-                alert('Eliminados');
                 $scope.getAll();
             })
             .error(function(current){
                 alert(current)
             });
     }
-
-
-
-    //get single post
-    $scope.getById = function() {
-        todoService.getById($routeParams.postId)
-            .success(function (current, status, headers, config) {
-                $scope.current = current;
-            })
-            .error(function(current, status, headers, config) {
-                toaster.pop('error', current);
-            });
-    };
-
-    // update post information. Call to blogService.update()
-    $scope.updatePost = function() {
-        todoService.update($scope.current.id, $scope.current)
-            .success(function (current, status, headers, config) {
-                $location.path("/posts/"+$scope.current.id);
-                toaster.pop('success', "Post updated successfully!");
-            })
-            .error(function(current, status, headers, config) {
-                toaster.pop('error', current);
-            });
-    };
 
     //call this method at first!
     $scope.getAll();
