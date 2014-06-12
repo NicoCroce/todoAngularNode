@@ -10,6 +10,21 @@ app.config(['$routeProvider', function($routeProvider) {
             controller: 'myTasksCtrl',
             templateUrl: 'partials/myTasks.html'
             })
+        .when('/todo',
+        {
+            controller: 'myTasksCtrl',
+            templateUrl: 'partials/myTasks.html'
+        })
+        .when('/indTodo',
+        {
+            controller: 'myIndTasksCtrl',
+            templateUrl: 'partials/myIndTasks.html'
+        })
+        .when('/about',
+        {
+            controller: 'myAboutCtrl',
+            templateUrl: 'partials/myAbout.html'
+        })
         .otherwise({redirectTo: '/'});
 }]);
 

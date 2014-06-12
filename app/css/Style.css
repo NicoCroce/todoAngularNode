@@ -1,0 +1,23 @@
+*{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.listStyle{
+    margin: 15px;
+}
+
+.hecho-true{
+    background: rgb(219, 255, 218);
+    text-decoration: line-through;
+}
+
+.bgBody {
+    background: rgb(238, 238, 238) !important;
+}
+
+.principalCenter {
+    width: 80%;
+    margin: 0 auto;
+}

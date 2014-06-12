@@ -78,6 +78,13 @@ app.post('/selectedTask', function(req, res) {
     res.json(true);
 });
 
+app.delete('/delTask/:id', function(req, res){
+    selTask = _.find(myTasks, function(itemTask){return itemTask.id == req.params.id});
+    var taskIndex = myTasks.indexOf(selTask);
+    myTasks.splice(taskIndex, 1);
+    res.json(true);
+});
+
 
 // update a created Task    est'a bien req.params.id?
 // var postIndex = myPosts.indexOf(selPost);  que hace?

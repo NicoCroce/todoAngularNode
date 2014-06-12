@@ -1,16 +1,34 @@
 <!-- My posts  -->
 
 <h1>Lista de Tareas</h1>
-    <span>{{restantes()}} de {{tareas.length}}</span>
-    <button ng-click="delSelectedTasks()">Eliminar</button>
-    <ul class="unstyled">
-        <li ng-repeat="tarea in tareas">
-            <input type="checkbox" ng-change="seleccion(tarea)" ng-model="tarea.hecho">
-            <span class="hecho-{{tarea.hecho}}">{{tarea.texto}}</span>
-        </li>
-    </ul>
-    <form ng-submit="addTask()">
-        <input type="text" size="30" placeholder="Agregar item" ng-model="textoNuevaTarea">
-        <button class="btn btn-primary" type="submit">Agregar</button>
-    </form>
+<span>{{restantes()}} de {{tareas.length}}</span>
+<button ng-click="delSelectedTasks()">Eliminar</button>
+<ul class="unstyled">
+    <li ng-repeat="tarea in tareas" class="listStyle">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                      <span class="input-group-addon">
+                        <input type="checkbox" ng-change="seleccion(tarea)" ng-model="tarea.hecho">
+                      </span>
+                    <span type="text" class="form-control hecho-{{tarea.hecho}}">{{tarea.texto}}</span>
+                </div>
+                <!-- /input-group -->
+            </div>
+            <!-- /.col-lg-6 -->
+        </div>
+    </li>
+</ul>
+<form ng-submit="addTask()">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Agregar item" ng-model="textoNuevaTarea">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Add</button>
+                    </span>
+        </div>
+        <!-- /input-group -->
+    </div>
+    <!-- /.col-lg-6 -->
+</form>
 <script src=""></script>

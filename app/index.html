@@ -8,27 +8,16 @@
   <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
   <link rel="stylesheet" href="css/bootstrap.css"/>
   <link rel="stylesheet" href="css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="css/toaster.css"/>
+  <link rel="stylesheet" href="css/Style.css"/>
 </head>
-<body>
-    <!-- navigation bar --> 
-    <nav class="navbar navbar-default navbar-inverse" role="navigation"> <!--definir un controller, agregar navigationController.js     $location.path("/post/1")-->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">TODO (demo)</a>
-        </div>
-    </nav><!-- navigation bar --> 
-     
-    <!-- container -->
-    <div class="row">
-        <!-- right side -->
-        <div class="col-xs-12 col-md-8 right-side">
-            <!-- ng-view, HTML is injected dinamically -->
-                <div ng-view></div>
-        </div>    
-        <!-- bottom side -->
-        <div class="bottom-side">
-        </div>
-    </div> <!-- container -->
+<body class="bgBody">
+    <ul class="nav nav-pills" >
+        <li class="active"><a href="#">TODO (demo)</a></li>
+        <li><a href="#/indTodo">Individual Task</a></li>
+        <li><a href="#/about">About</a></li>
+    </ul>
+
+    <div ng-view class="principalCenter"></div>
     
     <!-- scripts -->
     <script src="lib/angular/angular.js"></script>
@@ -42,5 +31,6 @@
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers/myTasksCtrl.js"></script>
+    <script src="js/controllers/myIndTasksCtrl.js"></script>
 </body>
 </html>
