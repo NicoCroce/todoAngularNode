@@ -25,7 +25,8 @@
 <form ng-submit="addTask()">
     <div class="col-lg-6">
         <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Agregar item" ng-model="textoNuevaTarea">
+            <input type="text" class="form-control vacio-{{vacio}}" placeholder="Agregar item"
+                   ng-model="textoNuevaTarea" ng-change="verificaTexto()">
                     <span class="input-group-btn">
                         <button class="btn btn-default btn-primary" type="submit">Add</button>
                     </span>

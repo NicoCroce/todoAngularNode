@@ -36,16 +36,17 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
             texto : $scope.textoNuevaTarea,
             hecho : false
         };
-        if($scope.textoNuevaTarea == ""){
-            
+        //debugger;
+        if($scope.textoNuevaTarea == "" || $scope.textoNuevaTarea == undefined) {
+            $scope.vacio = true;
+            return;
         }
-
         todoService.create(task)
             .success(function (current, status, headers, config) {
                 $scope.getAll();
                 $scope.textoNuevaTarea = "";
             })
-            .error(function(current, status, headers, config) {
+            .error(function (current, status, headers, config) {
                 alert(current);
             });
     };
@@ -68,6 +69,12 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
             .error(function(current){
                 alert(current)
             });
+    }
+
+    $scope.verificaTexto = function(){
+        if($scope.textoNuevaTarea != "" || $scope.textoNuevaTarea != undefined) {
+            $scope.vacio = false;
+        }
     }
 
     //call this method at first!
