@@ -9,7 +9,7 @@
 <ul class="unstyled">
     <li ng-repeat="tarea in tareas" class="listStyle">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-6 ancho-total">
                 <div class="input-group">
                       <span class="input-group-addon">
                         <input type="checkbox" ng-change="seleccion(tarea)" ng-model="tarea.hecho">
@@ -23,7 +23,7 @@
     </li>
 </ul>
 <form ng-submit="addTask()">
-    <div class="col-lg-6">
+    <div class="col-lg-6 ancho-total">
         <div class="input-group input-group-lg">
             <input type="text" class="form-control vacio-{{vacio}}" placeholder="Agregar item"
                    ng-model="textoNuevaTarea" ng-change="verificaTexto()">
