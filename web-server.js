@@ -2,6 +2,7 @@ var express = require("express"),
     app     = express()
 
 var _ = require("underscore");
+var mongoose = require('mongoose');
 
 var myTasks = [{
     id: 1,
@@ -40,6 +41,52 @@ app.listen(app.get('port'), function () {
 app.get("/", function(req, res) {
     res.redirect("/index.html");
 });
+
+
+// mongo db ____________________________________________________________________________________________
+
+var db = mongoose.connection;
+
+db.on('error', console.error);
+
+db.once('open', function() {
+        // Schema
+        var TaskSchema = new mongoose.Schema({
+            id: Number,
+            texto: { type: String },
+            hecho: { type: Boolean }
+        });
+
+        // Mongoose also creates a MongoDB collection called 'Posts' for these documents.
+        var singleTask = mongoose.model('singleTask', TaskSchema);
+    });
+    // examples ____________________________________________________________________________________________
+
+    var post_example1 = new singlePost({
+        id: 1,
+        texto: 'Recruiting Advice No One Tells You',
+        hecho:  false
+    });
+
+    var post_example2 = new singlePost({
+        id: 2,
+        texto: 'Recruiting Nico',
+        hecho:  true
+    });
+
+    var contID = 2;
+
+    post_example1.save();
+    post_example2.save();
+
+    // _____________________________________________________________________________________________________
+
+
+
+
+
+
+
 
 // get all Tasks
 app.get('/api/myTasks', function(req, res){
