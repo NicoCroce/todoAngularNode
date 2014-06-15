@@ -52,7 +52,8 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
     };
 
     $scope.seleccion = function(task){
-        todoService.seleccion(task)
+        debugger;
+        todoService.seleccion(task._id)
         .success(function () {
                 $scope.getAll();
             })

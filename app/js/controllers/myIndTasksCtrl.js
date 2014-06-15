@@ -15,7 +15,8 @@ app.controller('myIndTasksCtrl', function($scope, todoService, $location) {
 
     $scope.eliminarTask = function(task){
         $scope.current;
-        todoService.borrarTarea(task.id)
+        debugger;
+        todoService.borrarTarea(task._id)
             .success(function () {
                 $scope.getAll();
             })

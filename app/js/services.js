@@ -15,8 +15,8 @@ app.service('todoService', function ($http, $location) {
         return $http.put('/newTask', newTask);
     };
 
-    this.seleccion = function(selectedTask){
-        return $http.post('/selectedTask', selectedTask);
+    this.seleccion = function(selectedTaskID){
+        return $http.post('/selectedTask/' + selectedTaskID);
     };
 
     this.delSelectedTasks = function () {
