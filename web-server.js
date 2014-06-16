@@ -99,6 +99,14 @@ db.once('open', function() {
         res.json(true);
     });
 
+    app.post('/updateTask', function(req, res){
+        colTasks.findOne({_id : req.body._id}, function(err, task){
+           task.texto = req.body.texto;
+            task.save();
+        });
+        res.json(true);
+    });
+
     app.delete('/delTask/:id', function(req, res){
         colTasks.remove({_id: req.params.id}, function(err){
             if (err) return handleError(err);

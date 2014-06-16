@@ -26,4 +26,8 @@ app.service('todoService', function ($http, $location) {
     this.borrarTarea = function(myTaskID){
         return $http.delete('/delTask/'+ myTaskID);
     };
+
+    this.editarTarea = function(myTask){
+        return $http.post('/updateTask', myTask);
+    }
 }); 

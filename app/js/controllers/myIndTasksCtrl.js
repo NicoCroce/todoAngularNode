@@ -2,6 +2,10 @@
 
 app.controller('myIndTasksCtrl', function($scope, todoService, $location) {
     //get all elements
+
+    $scope.textBtEdit = "Edit";
+    $scope.state = false;
+
     $scope.getAll = function() {
         todoService.getAll()
             .success(function (data, status, headers, config) {
@@ -17,6 +21,24 @@ app.controller('myIndTasksCtrl', function($scope, todoService, $location) {
         $scope.current;
         debugger;
         todoService.borrarTarea(task._id)
+            .success(function () {
+                $scope.getAll();
+            })
+            .error(function(current) {
+                alert(current);
+            });
+    }
+
+    $scope.editarTask= function(task){
+        debugger;
+        $scope.state = true;
+    }
+
+
+    var confirmEditTask = function(task){
+        $scope.current;
+        debugger;
+        todoService.editarTarea(task)
             .success(function () {
                 $scope.getAll();
             })
