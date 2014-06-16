@@ -83,3 +83,24 @@
     float: none;
     clear: both;
 }
+
+.alertaLbl-true{
+    display: initial;
+    padding: 4px;
+    border-radius: 4px;
+    width: 228px;
+    box-shadow: inset 0px 0px 25px 0px white;
+    color: rgb(92, 92, 92);
+}
+
+.alertaLbl-false {
+    display: none;
+}
+
+.success-false{
+    background: rgb(255, 192, 192);
+ }
+
+.success-true{
+    background: rgb(179, 250, 179);
+}

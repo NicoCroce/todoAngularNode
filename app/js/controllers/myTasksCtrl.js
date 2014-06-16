@@ -2,6 +2,13 @@
 
 app.controller('myTasksCtrl', function($scope, todoService, $location) {
 
+    var msgAlert = function(msg, visibilidad, estado){
+        $scope.msgAlerta = msg;
+        $scope.msgVisible = visibilidad;
+        $scope.styleAgregado = estado;
+    }
+
+
     //get all elements
     $scope.getAll = function() {
         todoService.getAll()
@@ -39,12 +46,14 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
         //debugger;
         if($scope.textoNuevaTarea == "" || $scope.textoNuevaTarea == undefined) {
             $scope.vacio = true;
+            msgAlert("Debe ingresar la tarea", true, false)
             return;
         }
         todoService.create(task)
             .success(function (current, status, headers, config) {
                 $scope.getAll();
                 $scope.textoNuevaTarea = "";
+                msgAlert("Tarea agreagada", true, true) ;
             })
             .error(function (current, status, headers, config) {
                 alert(current);
@@ -52,7 +61,7 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
     };
 
     $scope.seleccion = function(task){
-        debugger;
+        msgAlert("", false, false);
         todoService.seleccion(task._id)
         .success(function () {
                 $scope.getAll();
@@ -63,8 +72,13 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
     }
 
     $scope.delSelectedTasksC = function(){
+        if($scope.cuentaEliminar == 0){
+            msgAlert("Debe seleccionar la tarea a elminar", true, false);
+            return;
+        }
         todoService.delSelectedTasks()
             .success(function(){
+                msgAlert("Tarea eliminada", true, true);
                 $scope.getAll();
             })
             .error(function(current){
@@ -74,6 +88,7 @@ app.controller('myTasksCtrl', function($scope, todoService, $location) {
 
     $scope.verificaTexto = function(){
         if($scope.textoNuevaTarea != "" || $scope.textoNuevaTarea != undefined) {
+            msgAlert("", false, false);
             $scope.vacio = false;
         }
     }

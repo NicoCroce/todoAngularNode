@@ -3,6 +3,7 @@
 <h1 class="tituloList">Lista de Tareas</h1>
 <div class="separador">
     <span class="numRestante">{{restantes()}} tarea/s restantes de {{tareas.length}}</span>
+    <span class="alertaLbl-{{msgVisible}} success-{{styleAgregado}}" >{{msgAlerta}}</span>
         <button ng-click="delSelectedTasksC()" class="btn btn-default btn-danger btDelete">DELETE
     <span class="btEliminar">{{cuentaEliminar}}</span></button>
 </div>
